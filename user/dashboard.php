@@ -32,11 +32,13 @@ $deposited = $row[0];
                     }
                     ?>
                     <marquee width="60%" direction="left" height="100px">
-                        <h4><?php echo $mo; ?></h4>
+<!--                        <h4>--><?php //echo $mo; ?><!--</h4>-->
                     </marquee>
+                    <center>
                     <div>
                         <h4 class="font-weight-bold mb-0"><?php echo $name; ?></h4>
                     </div>
+                    </center>
                 </div>
             </div>
         </div>
@@ -49,7 +51,7 @@ $deposited = $row[0];
                             <h4 class="mb-1">NGN.<?php echo number_format(intval($balance *1),2);?></h3>
                             <i class="ti-calendar icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
                         </div>
-                        <p class="mb-0 mt-2 text-danger">0.12% <span class="text-black ml-1"><small>(30 days)</small></span></p>
+<!--                        <p class="mb-0 mt-2 text-danger">0.12% <span class="text-black ml-1"><small>(30 days)</small></span></p>-->
                     </div>
                 </div>
             </div>
@@ -73,7 +75,7 @@ $deposited = $row[0];
                             <h4 class="mb-1">NGN.<?php echo number_format(intval($total *1),2);?></h4>
                             <i class="fa fa-cc-visa red-cl font-30"></i>
                         </div>
-                        <p class="mb-0 mt-2 text-success">64.00%<span class="text-black ml-1"><small>(30 days)</small></span></p>
+<!--                        <p class="mb-0 mt-2 text-success">64.00%<span class="text-black ml-1"><small>(30 days)</small></span></p>-->
                     </div>
                 </div>
             </div>
@@ -85,7 +87,7 @@ $deposited = $row[0];
                             <h4 class="mb-1">NGN.<?php echo number_format(intval($unpaid *1),2);?></h4>
                             <i class="icon fa fa-money yellow-cl font-30"></i>
                         </div>
-                        <p class="mb-0 mt-2 text-success">23.00%<span class="text-black ml-1"><small>(30 days)</small></span></p>
+<!--                        <p class="mb-0 mt-2 text-success">23.00%<span class="text-black ml-1"><small>(30 days)</small></span></p>-->
                     </div>
                 </div>
 

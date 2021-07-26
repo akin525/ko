@@ -100,6 +100,9 @@ if (!isset($_SESSION['username'])) {
                 }
             }
         </script>
+                    <?php
+
+                    ?>
         <div class="row">
             <div class="col-md-12 col-sm-12 mb-4">
                 <div class="box">
@@ -132,7 +135,7 @@ if (!isset($_SESSION['username'])) {
                                     <input type="hidden" name="productid" value="<?php echo $id; ?>">
 
                                     <?php
-                                    if ($product_type=="airtime" || $product_type=="nepa") {
+                                    if ($product_type=="airtime") {
                                         ?>
                                         <div class="form-group">
                                             <input class="form-control" type="number" placeholder="Enter Amount" maxlength="4" minlength="1" id="amount" name="amount" value="" autocomplete="on" size="20" min="50" max="5000" required="">
@@ -142,22 +145,36 @@ if (!isset($_SESSION['username'])) {
                                         <input type="hidden" name="amount" value="<?php echo $amount; ?>">
                                     <?php } ?>
 
-                                    <?php if ($product_type=="paytv") { ?>
+                                    <?php if ($product_type=="tv") { ?>
                                         <span class="text-danger" id="vtv"></span>
                                         <div class="form-group">
-                                            <input class="form-control" type="tel" placeholder="Enter recipient number" maxlength="10" minlength="9" id="tvphone" name="number" value="" autocomplete="on" size="20" required="">
+                                            <input class="form-control" type="tel" placeholder="Enter IUC number" maxlength="10" minlength="9" id="tvphone" name="number" value="" autocomplete="on" size="20" required="">
                                         </div>
 
                                         <button id="btnv" type="button" onclick="showUser()" class="btn btn-rounded btn-info"> Verify </button>
                                         <button id="btnd" type="submit" disabled class="btn btn-rounded btn-outline-info"> Continue </button>
 
-                                    <?php } else{ ?>
+                                    <?php } else if ($product_type=="data"){ ?>
 
                                         <div class="form-group">
                                             <input class="form-control" type="tel" placeholder="Enter recipient number" maxlength="11" minlength="11" id="phone" name="number" value="" autocomplete="on" size="20" required="">
                                         </div>
 
                                         <button type="submit" class="btn btn-rounded btn-outline-info"> Continue </button>
+                                    <?php } ?>
+
+                                    <?php if ($product_type=="nepa") { ?>
+                                        <span class="text-danger" id="vtv"></span>
+                                        <div class="form-group">
+                                            <input class="form-control" type="number" placeholder="Enter Amount" maxlength="4" minlength="1" id="amount" name="amount" value="" autocomplete="on" size="20" min="50" max="5000" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" type="tel" placeholder="Enter IUC number" maxlength="10" minlength="9" id="tvphone" name="number" value="" autocomplete="on" size="20" required="">
+                                        </div>
+
+                                        <button id="btnv" type="button" onclick="showUser()" class="btn btn-rounded btn-info"> Verify </button>
+                                        <button id="btnd" type="submit" disabled class="btn btn-rounded btn-outline-info"> Continue </button>
+
                                     <?php } ?>
                                 </form>
                                 <br>

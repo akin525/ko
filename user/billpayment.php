@@ -125,18 +125,53 @@ elseif ($product_type=="airtime") {
         echo "<script language='javascript'> window.location='myinvoice.php';</script>";
     }
     if($success==0){
-        echo "<script language='javascript'> window.location='mcderror.php';</script>";
+        $query=mysqli_query($connection,"update wallet set balance=balance+$topay where username='".$_SESSION['username']."'");
+        echo "<script language='javascript'>
+  let message = '$topay Refunded';
+                                    alert(message);
+ window.location='mcderror.php';</script>";
     }
 }
-elseif ($product_type=="paytv") {
-//    buy($networkcode, $product_type, $phone, $product, $payer, $topay, $refid, $con);
-}elseif ($product_type=="prepaid") {
-    buy($networkcode, $product_type, $phone, $product, $payer, $topay, $refid, $con);
-}else{
-    $tran_stat="0";
-    $results="Waiting for admin action";
-    pro($tran_stat, $product, $payer, $topay, $refid, $results, $con);
+elseif ($product_type=="tv") {
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.5starcompany.com.ng/mcd_reseller_test.php',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_SSL_VERIFYHOST => 0,
+        CURLOPT_SSL_VERIFYPEER => 0,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => array('api' => 'MCDKEY_903sfjfi0ad833mk8537dhc03kbs120r0h9a','service' => 'paytv','coded' => $networkcode,'phone' => $phone),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    echo $response;
+    $data=json_decode($response, true);
+    $success=$data["success"];
+    $m=$data["message"];
+    $net=$data["network"];
+    if($success==1) {
+        $query = mysqli_query($connection, "insert into bill_payment (product, username, amount, transactionid, paymentmethod,status) values ('$title', '$payer', '$topay', '$net', 'Wallet Payment', '$success')");
+        echo "<script language='javascript'> 
+let message = '$m';
+                                    alert(message);
+window.location='myinvoice.php';</script>";
+    }
+    if($success==0){
+        $query=mysqli_query($connection,"update wallet set balance=balance+$topay where username='".$_SESSION['username']."'");
+        echo "<script language='javascript'>
+  let message = '$topay Refunded';
+                                    alert(message);
+ window.location='mcderror.php';</script>";
+    }
 }
+
 
 //function buy($networkcode, $product_type, $phone, $product, $payer, $topay, $refid, $con){
 //    $url=$GLOBALS['server'].'coded=' . $networkcode . '&phone=' . $phone . '&amount='.$topay . '&service=' . $product_type . '&refid=' . $refid . '&payer=' . $payer . '&token=873ey3uidvr3274';

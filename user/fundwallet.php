@@ -91,7 +91,7 @@ while($row = mysqli_fetch_array($result))
                                                     <div class="input-group-prepend">
                                                         <label class="form-control">NGN</label>
                                                     </div>
-                                                    <input type="number" maxlength="4" class="form-control" name="amount" id="amount" placeholder="00.00"/>
+                                                    <input type="number" maxlength="4" class="form-control" name="amount" id="amount" placeholder="00.00" required/>
                                                 </div>
                                             </div>
                                             <input type="hidden"  id="email-address" value="<?php echo $email; ?>">
@@ -99,18 +99,18 @@ while($row = mysqli_fetch_array($result))
                                 </div>
                                 <div class="text-center mb-3">
                                     <p></p>
-                                    <p class="mb-3">OR</p>
-                                    <ul class="list-inline mb-0">
-                                        <li class="line-inline-item mb-0 d-inline-block">
-                                            <a href="javascript:;" name="amount" class="updatebtn">500</a>
-                                        </li>
-                                        <li class="line-inline-item mb-0 d-inline-block">
-                                            <a href="javascript:;" id="1000" class="updatebtn">1000</a>
-                                        </li>
-                                        <li class="line-inline-item mb-0 d-inline-block">
-                                            <a href="javascript:;" id="1500" class="updatebtn">1500</a>
-                                        </li>
-                                    </ul>
+<!--                                    <p class="mb-3">OR</p>-->
+<!--                                    <ul class="list-inline mb-0">-->
+<!--                                        <li class="line-inline-item mb-0 d-inline-block">-->
+<!--                                            <button type="submit" name="amount" value="500" onclick="payWithPaystack()"> 500</button>-->
+<!--                                        </li>-->
+<!--                                        <li class="line-inline-item mb-0 d-inline-block">-->
+<!--                                            <a href="javascript:;" id="1000" type="submit">1000</a>-->
+<!--                                        </li>-->
+<!--                                        <li class="line-inline-item mb-0 d-inline-block">-->
+<!--                                            <a href="javascript:;" id="1500" class="updatebtn">1500</a>-->
+<!--                                        </li>-->
+<!--                                    </ul>-->
                                 </div>
                                 <button class="btn btn-primary btn-block withdraw-btn" type="submit" onclick="payWithPaystack()"> Add to Wallet</button>
                                 <script src="https://js.paystack.co/v1/inline.js"></script>
@@ -145,9 +145,9 @@ while($row = mysqli_fetch_array($result))
 <!--                        <td>--><?php //echo $row["id"] ; ?><!--</td>-->
                         <td><?php echo $row["date"] ; ?></td>
                         <td><?php echo $row["username"] ; ?></td>
-                        <td>NGN.<?php echo $row["amount"] ; ?></td>
-                        <td>NGN.<?php echo $row["iwallet"] ; ?></td>
-                        <td>NGN.<?php echo $row["fwallet"] ; ?></td>
+                        <td>NGN<?php echo $row["amount"] ; ?></td>
+                        <td>NGN<?php echo $row["iwallet"] ; ?></td>
+                        <td>NGN<?php echo $row["fwallet"] ; ?></td>
                         <td><?php echo $row ["payment_ref"] ; ?></td>
                     </tr>
                     <?php

@@ -11,11 +11,12 @@
                 </div>
 
                 <!-- Title & Breadcrumbs-->
+                <div class="card">
+                    <div class="card-body">
                 <div class="row page-breadcrumbs">
                     <div class="col-md-12 align-self-center">
                         <h4 class="theme-cl">Payment Invoice Detail</h4>
                     </div>
-                </div>
                 <!-- Title & Breadcrumbs-->
                 <?php
                 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id']))
@@ -71,13 +72,13 @@
 
                                 <div class="row text-center">
                                     <div class="col-md-12">
-                                        <a href="javascript:window.print()" class="btn theme-btn">Print this invoice</a>
+                                        <a href="javascript:print()" class="btn-icon-text .btn-icon-prepend">Print this invoice</a>
                                     </div>
                                 </div>
 
                                 <div class="row mrg-0">
                                     <div class="col-md-6">
-                                        <div id="logo"><img src="../uploads/logo.png" class="img-responsive" alt=""></div>
+                                        <div id="logo"><img src="images/logo.png" class="img-responsive" alt=""></div>
                                     </div>
 
                                     <div class="col-md-6">
