@@ -43,7 +43,7 @@ if (!isset($_SESSION['username'])) {
         <div class="row">
                 <div class="card">
                     <div class="card-body">
-                <div class="row page-breadcrumbs">
+                       <div class="row page-breadcrumbs">
                     <div class="col-md-5 align-self-center">
                         <h4 class="theme-cl">Available Products</h4>
                     </div>

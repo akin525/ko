@@ -32,7 +32,7 @@ curl_setopt_array($curl, array(
     CURLOPT_SSL_VERIFYHOST => 0,
     CURLOPT_SSL_VERIFYPEER => 0,
     CURLOPT_CUSTOMREQUEST => 'POST',
-    CURLOPT_POSTFIELDS => array('service' => 'tv', 'coded' => $networkcode, 'phone' => $number),
+    CURLOPT_POSTFIELDS => array('service' => 'electricity', 'coded' => $networkcode, 'phone' => $number),
     CURLOPT_HTTPHEADER => array(
         'Authorization: MCDKEY_903sfjfi0ad833mk8537dhc03kbs120r0h9a'
     )

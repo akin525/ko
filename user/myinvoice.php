@@ -15,16 +15,13 @@ if (!isset($_SESSION['username'])) {
 <!--                        <h4 class="font-weight-bold mb-0">--><?php //echo $name; ?><!--</h4>-->
                     </div>
                 </div>
-<!--                <div class="row">-->
-                    <div class="card">
-                        <div class="card-body">
-                <div class="row">
-<!--                    <div class=" grid-margin stretch-card">-->
-<!--                        <div class="card">-->
-                            <div class="card-body">
-                                <p class="card-title mb-0">Bill Invoice</p>
-                                <div class="table-responsive">
-                                    <table class="table table-hover">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-0">Bills Payment</h4>
+                        <p class="card-description">
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
                                         <thead>
                                         <tr>
                                             <th>Product Name</th>

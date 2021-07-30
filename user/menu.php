@@ -130,9 +130,21 @@ while($row = mysqli_fetch_array($result)) {
 
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="air.php">
+                        <i class="ti-view-list-alt menu-icon"></i>
+                        <span class="menu-title">Check Available Airtime</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="buyairtime.php">
                         <i class="ti-layout-list-post menu-icon"></i>
                         <span class="menu-title">Buy Airtime</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="list.php">
+                        <i class="ti-pie-chart menu-icon"></i>
+                        <span class="menu-title">Check Available Network</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -142,9 +154,20 @@ while($row = mysqli_fetch_array($result)) {
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="tvlist.php">
+                        <i class="ti-view-list-alt menu-icon"></i>
+                        <span class="menu-title">Available Tv</span>
+                    </a>
+                <li class="nav-item">
                     <a class="nav-link" href="paytv.php">
                         <i class="ti-view-list-alt menu-icon"></i>
                         <span class="menu-title">Pay-Tv</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="eletricp.php">
+                        <i class="ti-view-list-alt menu-icon"></i>
+                        <span class="menu-title">Check Available Nepa Bills</span>
                     </a>
                 </li>
                 <li class="nav-item">

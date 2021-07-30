@@ -62,8 +62,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['todo']))
             $_SESSION['username'] = $username;
             print "
                     <script language='javascript'>
-                    let message = 'Login Successful';
-                                    alert(message);
+//                    let message = 'Login Successful';
+//                                    alert(message);
                         window.location = 'dashboard.php';
                     </script>
                     ";

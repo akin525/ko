@@ -65,11 +65,13 @@
 
 
                 ?>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="detail-wrapper padd-top-30 padd-bot-30">
-
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-0">Bills Payment</h4>
+                            <p class="card-description">
+                            </p>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
                                 <div class="row text-center">
                                     <div class="col-md-12">
                                         <a href="javascript:print()" class="btn-icon-text .btn-icon-prepend">Print this invoice</a>

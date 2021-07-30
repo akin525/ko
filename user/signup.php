@@ -122,8 +122,9 @@ window.location = 'dashboard.php';
 </script>
 ";
     }else{
-        $errormsg= "<center><div class='card'>
-                    <i class='fa fa-ban-circle'></i><h4>Please Fix Below Errors : </br></h4>".$msg."</div></center>"; //printing error if found in validation
+        $errormsg= "<center><div class='card alert-danger'>
+<button type='button' class='close' data-dismiss='alert'>&times;</button>
+                    <i class='btn-icon-append'></i><h6 class='alert-danger'>Please Fix Below Errors : </br></h6>".$msg."</div></center>"; //printing error if found in validation
     }
 }
 ?>
@@ -139,7 +140,7 @@ window.location = 'dashboard.php';
                         </div>
                         <h4>New here?</h4>
                         <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
-                        <?php
+                       <p class="alert-danger"><?php
                         if($_SERVER['REQUEST_METHOD'] == 'POST' && ($status=="NOTOK"))
                         {
                             print $errormsg;
@@ -154,6 +155,10 @@ window.location = 'dashboard.php';
 
                         }
                         ?>
+                       </p>
+                    <br>
+                    </br>
+                        <p></p>
                         <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"], ENT_QUOTES, "utf-8"); ?>"method="post">
                         <div class="form-group">
                                 <input type="text" name="username" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username" required/>
