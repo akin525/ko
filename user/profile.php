@@ -1,7 +1,7 @@
 <?php include ("menu.php");
 if (!isset($_SESSION['username'])) {
     print "<script language='javascript'>
-					window.location = 'login.php';
+					window.location = 'user/login.php';
 				</script>";
 }
 $query="SELECT * FROM  users WHERE username='".$_SESSION['username']."'";
@@ -118,7 +118,10 @@ window.location = 'dashboard.php';
             <button name="form_submit" id="form_submit" class="btn btn-primary pl-5 pr-5" type="submit">Update</button>
         </div>
         </form>
-    </div>
+                <button type="button" class="btn btn-outline-primary btn-rounded"><a href="password.php"> Change Password</a></button>
+<!--                <button name="form_submit" id="form_submit" class="btn btn-primary pl-5 pr-5" type="button"><a href="password.php"> Change Password</a></button>-->
+
+            </div>
 
  </div>
 </div>

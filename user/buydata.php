@@ -75,8 +75,7 @@ if (!isset($_SESSION['username'])) {
                 <div class="row">
 
                     <?php
-
-                    $query="SELECT * FROM products where `product_type`='data'";
+                    $query="SELECT * FROM products1 where `pa`='data'";
                     $result = mysqli_query($connection,$query);
                     while($row = mysqli_fetch_array($result))
                     {

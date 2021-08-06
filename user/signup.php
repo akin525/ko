@@ -76,7 +76,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username'])) {
 //mysqli_query($con,"INSERT INTO referal (`username`, `newuserid`, amount) value ('$refer', '$username', 100)");
 
         $to = $email;
-        $from = "mcd@gmail.com";
+        $from = "info@lelescoenterprise.com";
 //    $name = $_REQUEST['name'];
 //    $subject = $_REQUEST['subject'];
 //    $number = $_REQUEST['phone_no'];
@@ -187,7 +187,7 @@ window.location = 'dashboard.php';
                                 <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
                             </div>
                             <div class="text-center mt-4 font-weight-light">
-                                Already have an account? <a href="login.php" class="text-primary">Login</a>
+                                Already have an account? <a href="user/login.php" class="text-primary">Login</a>
                             </div>
                         </form>
                     </div>

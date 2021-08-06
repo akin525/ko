@@ -18,6 +18,7 @@ $number= mysqli_real_escape_string($connection,$_GET["number"]);
 $networkcode= mysqli_real_escape_string($connection,$_GET["networkcode"]);
 $provider=substr(mysqli_real_escape_string($connection,$_GET["provider"]), 0,1);
 
+//echo $networkcode . " ". $number;
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -42,9 +43,8 @@ $response = curl_exec($curl);
 
 curl_close($curl);
 //echo $response;
-
 $data=json_decode($response, true);
-$success=$data["status"];
+$success=$data["success"];
 $tran=$data["data"];
 
 // Perform transaction/initialize on our server to buy

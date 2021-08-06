@@ -47,12 +47,8 @@ if (!isset($_SESSION['username'])) {
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Short By
                             </button>
-                            <div class="dropdown-menu pull-right animated flipInX">
-                                <a href="#">Prices</a>
-                                <a href="#">Ascending</a>
-                                <a href="#">Descending</a>
-                            </div>
-                        </div>
+
+                        </div>  
 
                     </div>
                 </div>
@@ -70,7 +66,7 @@ if (!isset($_SESSION['username'])) {
 
                     <?php
 
-                    $query="SELECT * FROM products where `product_type`='airtime'";
+                    $query="SELECT * FROM products1 where `product_type`='airtime'";
                     $result = mysqli_query($connection,$query);
                     while($row = mysqli_fetch_array($result))
                     {

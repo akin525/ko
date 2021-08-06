@@ -3,7 +3,7 @@
 if (!isset($_SESSION['username'])) {
     print "
 <script language='javascript'>
-    window.location = 'login.php';
+    window.location = 'user/user/login.php';
 </script>
 ";
 }
@@ -77,7 +77,7 @@ while($row = mysqli_fetch_array($result))
 
 }
 
-$mail= "mcd@gmail.com";
+$mail= "info@lelescoenterprise.com";
 $to = $email;
 $from = $mail;
 //$name = $_REQUEST['name'];

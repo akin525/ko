@@ -10351,7 +10351,7 @@ select.form-control:focus::-ms-value {
 .form-control-file,
 .form-control-range {
   display: block;
-  width: 100%;
+  width: 80%;
 }
 
 .col-form-label {
@@ -10403,11 +10403,11 @@ select.form-control:focus::-ms-value {
 }
 
 .form-control-lg {
-  height: 3.5rem;
+  height: 2.5rem;
   padding: 0.94rem 1.94rem;
-  font-size: 1.25rem;
-  line-height: 1.5;
-  border-radius: 0.3rem;
+  font-size: 1.10rem;
+  line-height: 1.0;
+  border-radius: 0.2rem;
 }
 
 select.form-control[size], select.form-control[multiple] {
@@ -18667,7 +18667,7 @@ address p {
 }
 
 .font-weight-medium {
-  font-weight: 500;
+  font-weight: 200;
 }
 
 /* Miscellanoeous */

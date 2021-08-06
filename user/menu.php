@@ -46,7 +46,7 @@ while($row = mysqli_fetch_array($result)) {
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
 <!--            <a class="navbar-brand brand-logo mr-5" href="../index.html"><img src="images/logo.png" class="mr-2" alt="logo"/></a>-->
 
-            <a class="navbar-brand brand-logo-mini" href="../index.html"><img src="images/logo.png" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="../index.php"><img src="images/logo.png" alt="logo"/></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 
@@ -129,47 +129,47 @@ while($row = mysqli_fetch_array($result)) {
                     </a>
 
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="air.php">
-                        <i class="ti-view-list-alt menu-icon"></i>
-                        <span class="menu-title">Check Available Airtime</span>
-                    </a>
-                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="air.php">-->
+<!--                        <i class="ti-view-list-alt menu-icon"></i>-->
+<!--                        <span class="menu-title">Check Available Airtime</span>-->
+<!--                    </a>-->
+<!--                </li>-->
                 <li class="nav-item">
                     <a class="nav-link" href="buyairtime.php">
                         <i class="ti-layout-list-post menu-icon"></i>
                         <span class="menu-title">Buy Airtime</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="list.php">
-                        <i class="ti-pie-chart menu-icon"></i>
-                        <span class="menu-title">Check Available Network</span>
-                    </a>
-                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="list.php">-->
+<!--                        <i class="ti-pie-chart menu-icon"></i>-->
+<!--                        <span class="menu-title">Check Available Network</span>-->
+<!--                    </a>-->
+<!--                </li>-->
                 <li class="nav-item">
                     <a class="nav-link" href="buydata.php">
                         <i class="ti-pie-chart menu-icon"></i>
                         <span class="menu-title">Buy Data</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="tvlist.php">
-                        <i class="ti-view-list-alt menu-icon"></i>
-                        <span class="menu-title">Available Tv</span>
-                    </a>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="tvlist.php">-->
+<!--                        <i class="ti-view-list-alt menu-icon"></i>-->
+<!--                        <span class="menu-title">Available Tv</span>-->
+<!--                    </a>-->
                 <li class="nav-item">
                     <a class="nav-link" href="paytv.php">
                         <i class="ti-view-list-alt menu-icon"></i>
                         <span class="menu-title">Pay-Tv</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="eletricp.php">
-                        <i class="ti-view-list-alt menu-icon"></i>
-                        <span class="menu-title">Check Available Nepa Bills</span>
-                    </a>
-                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="eletricp.php">-->
+<!--                        <i class="ti-view-list-alt menu-icon"></i>-->
+<!--                        <span class="menu-title">Check Available Nepa Bills</span>-->
+<!--                    </a>-->
+<!--                </li>-->
                 <li class="nav-item">
                     <a class="nav-link" href="eletric.php">
                         <i class="ti-view-list-alt menu-icon"></i>
@@ -186,6 +186,13 @@ while($row = mysqli_fetch_array($result)) {
                     <a class="nav-link"  href="profile.php" >
                         <i class="ti-user menu-icon"></i>
                         <span class="menu-title">Profile</span>
+<!--                        <i class="menu-arrow"></i>-->
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="password.php" >
+                        <i class="ti-user menu-icon"></i>
+                        <span class="menu-title">Update Password</span>
 <!--                        <i class="menu-arrow"></i>-->
                     </a>
                 </li>

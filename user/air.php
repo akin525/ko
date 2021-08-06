@@ -1,7 +1,7 @@
 <?php include ("menu.php");
 if (!isset($_SESSION['username'])) {
     print "<script language='javascript'>
-					window.location = 'login.php';
+					window.location = 'user/login.php';
 				</script>";
 }
 ?>
@@ -30,7 +30,7 @@ curl_setopt_array($curl, array(
 $response = curl_exec($curl);
 
 curl_close($curl);
-//echo $response;
+echo $response;
 
 $data=json_decode($response, true);
 $success=$data["success"];

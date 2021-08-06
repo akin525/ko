@@ -1,7 +1,7 @@
 <?php include ("menu.php");
 if (!isset($_SESSION['username'])) {
     print "<script language='javascript'>
-					window.location = 'login.php';
+					window.location = 'user/login.php';
 				</script>";
 }
 ini_set( 'display_errors', 0 );
@@ -64,7 +64,7 @@ if($count == 1) { ?>
 
                 <?php
 
-                $query="SELECT * FROM products where `product_type`='nepa'";
+                $query="SELECT * FROM products1 where `product_type`='nepa'";
                 $result = mysqli_query($connection,$query);
                 while($row = mysqli_fetch_array($result))
                 {

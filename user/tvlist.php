@@ -1,7 +1,7 @@
 <?php include ("menu.php");
 if (!isset($_SESSION['username'])) {
     print "<script language='javascript'>
-					window.location = 'login.php';
+					window.location = 'user/login.php';
 				</script>";
 }
 ?>
@@ -38,6 +38,18 @@ $success1=$data["message"];
 foreach($data['data'] as $plans){
 //    echo $plans['name'];
 //    echo $plans['code'];
+//    $i = $plans['id'];
+//    $n = $plans['type'];
+//    $t = $plans['name'];
+//    $a = $plans['amount'];
+//    $s = $plans['status'];
+//    $d = $plans['name'];
+//    $n = $plans['code'];
+
+
+//foreach($data['data'] as $plans) {
+//    $query = mysqli_query($connection, "INSERT INTO `products1` ( `name`, `tittle`, `details`, `amount`, `status`, `dataplan`, `networkcode`, `product_type`) values ('$n', '$t', '$t',  '$a', '$s', '$d', '$n', 'tv')");
+//}
 }
 ?>
 

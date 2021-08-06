@@ -81,18 +81,27 @@ while($row = mysqli_fetch_array($result))
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-xl-6 col-lg-6 col-md-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">Add Wallet</h4>
-                                        <form id="paymentForm">
+                                        <?php
+                                        if($_SERVER['REQUEST_METHOD'] == 'POST')
+
+                                            $amou=intval(mysqli_real_escape_string($connection,$_POST['amount']));
+                                        {
+                                        ?>
+                                        <form id="paymentForm" action="transfer.php" method="post">
                                             <div class="form-group">
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
+
                                                         <label class="form-control">NGN</label>
                                                     </div>
                                                     <input type="number" maxlength="4" class="form-control" name="amount" id="amount" placeholder="00.00" required/>
                                                 </div>
+
                                             </div>
                                             <input type="hidden"  id="email-address" value="<?php echo $email; ?>">
                                     </div>
@@ -112,7 +121,10 @@ while($row = mysqli_fetch_array($result))
 <!--                                        </li>-->
 <!--                                    </ul>-->
                                 </div>
-                                <button class="btn btn-primary btn-block withdraw-btn" type="submit" onclick="payWithPaystack()"> Add to Wallet</button>
+<!--                                <b class="text-success fa-bold" id="vtv1"></b>-->
+                                <button class=" btn-block withdraw-btn" type="button" ><a href="transfer.php">Fund With Transfer</a></button>
+                                <?php } ?>
+                                <button class="btn btn-primary btn-block withdraw-btn" type="submit" onclick="payWithPaystack()"> Fund With Paystack</button>
                                 <script src="https://js.paystack.co/v1/inline.js"></script>
                                 </form>
                             </div>

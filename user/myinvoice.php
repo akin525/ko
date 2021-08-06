@@ -1,7 +1,7 @@
 <?php include ("menu.php");
 if (!isset($_SESSION['username'])) {
     print "<script language='javascript'>
-					window.location = 'login.php';
+					window.location = 'user/login.php';
 				</script>";
 }
 ?>

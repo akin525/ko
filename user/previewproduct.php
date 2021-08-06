@@ -1,7 +1,7 @@
 <?php include ("menu.php");
 if (!isset($_SESSION['username'])) {
     print "<script language='javascript'>
-					window.location = 'login.php';
+					window.location = 'user/login.php';
 				</script>";
 }
 ?>
@@ -64,17 +64,18 @@ if (!isset($_SESSION['username'])) {
 
                     $id=mysqli_real_escape_string($connection,$_POST['id']);
 
-                    $query="SELECT * FROM  products where  id = '$id'";
+                    $query="SELECT * FROM  products1 where  id = '$id'";
                     $result = mysqli_query($connection,$query);
 
                     while($row = mysqli_fetch_array($result))
                     {
                         $name="$row[name]";
-                        $title="$row[title]";
+                        $title="$row[tittle]";
                         $details="$row[details]";
                         $amount="$row[amount]";
                         $product_type="$row[product_type]";
-                        $networkcode=$row["ver"];
+                        $networkcode=$row["product_type1"];
+                        $gk=$row["networkcode"];
                     }
                 }
 
@@ -140,7 +141,7 @@ if (!isset($_SESSION['username'])) {
                                     }
                                 }
                             };
-                            xmlhttp.open("GET","verifybill1.php?number="+str+"&provider=<?php echo $name; ?>"+"&networkcode=<?php echo $networkcode; ?>",true);
+                            xmlhttp.open("GET","verifybill1.php?number="+str+"&provider=<?php echo $name; ?>"+"&networkcode=<?php echo $gk; ?>",true);
                             xmlhttp.send();
                         }
                     }

@@ -69,7 +69,7 @@ if (!isset($_SESSION['username'])) {
 
             <?php
 
-            $query="SELECT * FROM products where `product_type`='tv'";
+            $query="SELECT * FROM products1 where `product_type`='tv'";
             $result = mysqli_query($connection,$query);
             while($row = mysqli_fetch_array($result))
             {
