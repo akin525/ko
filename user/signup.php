@@ -1,5 +1,6 @@
 <?php include "include/database.php";
 
+
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username'])) {
 // Collect the data from post method of form submission //
     $name = mysqli_real_escape_string($connection, $_POST['name']);
@@ -71,7 +72,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username'])) {
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
-        $subject = "From EFE MOBILE MONEY.";
+        $subject = "From Lelescoenterprise.";
 
         $logo = '<img src="public/images/logo/logo.png" alt="logo">';
         $link = '#';
@@ -187,7 +188,7 @@ window.location = 'dashboard.php';
                                 <div class="input-group-prepend">
                                     <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
                                 </div>
-                                <input type="text" class="form-control form-control-lg" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required>
+                                <input type="text" name="username" class="form-control form-control-lg" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required>
                                 <input type="hidden" name="todo" value="post">
                             </div>
                             <!-- email -->
@@ -199,13 +200,14 @@ window.location = 'dashboard.php';
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="mdi-ticket-account"></i></span>
+                                    <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="ti-email"></i></span>
                                 </div>
                                 <input type="text" name="name" class="form-control form-control-lg" placeholder="Full Name" aria-label="Full-Name" aria-describedby="basic-addon1" required>
                             </div>
+
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-control-record"></i></span>
+                                    <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
                                 </div>
                                 <input type="number" name="phone" class="form-control form-control-lg" placeholder="Phone number" aria-label="Phone" aria-describedby="basic-addon1" required>
                             </div>
@@ -230,7 +232,7 @@ window.location = 'dashboard.php';
                         <div class="col-12">
                             <div class="form-group">
                                 <div class="p-t-20">
-                                    <button class="btn btn-info" id="to-recover" type="button"><i class="fa fa-lock m-r-5"></i><a class="text-white" href="../index.php"> Homepage</a></button>
+                                    <button class="btn btn-info" id="to-recover" type="button"><i class="fa fa-lock m-r-5"></i><a class="text-white" href="../index.php">Homepage</a></button>
                                     <button  class="btn btn-success float-right" type="button"><a href="login.php">Login</a></button>
                                 </div>
                             </div>
