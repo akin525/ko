@@ -2,6 +2,21 @@
 
 include_once ("include/database.php");
 
+$query = "SELECT * FROM  paymentgateway where name='MCD Token'";
+
+$result = mysqli_query($connection, $query);
+while ($row = mysqli_fetch_array($result)) {
+    $token = $row["code"];
+}
+
+    $query = "SELECT * FROM settings";
+$result = mysqli_query($connection, $query);
+while ($row = mysqli_fetch_array($result))
+{
+    $main = $row["maintain"];
+    if ($main == 0){
+
+
 // Inialize session
 //session_start();
 // Check, if username session is NOT set then this page will jump to login page
@@ -55,6 +70,7 @@ function pro($tran_stat, $product, $payer, $topay, $refid, $results, $con){
     }
     echo "<script language='javascript'> window.location='mcderror.php';</script>";
 }
+        $resellerURL='https://superadmin.mcd.5starcompany.com.ng/api/reseller/';
 
 //start buying
 if($product_type=="data"){
@@ -62,7 +78,7 @@ if($product_type=="data"){
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://test.mcd.5starcompany.com.ng/api/reseller/pay',
+        CURLOPT_URL => $resellerURL.'pay',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -72,9 +88,9 @@ if($product_type=="data"){
         CURLOPT_SSL_VERIFYHOST => 0,
         CURLOPT_SSL_VERIFYPEER => 0,
         CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => array('service' => 'data','coded' => $networkcode,'phone' => $phone),
+        CURLOPT_POSTFIELDS => array('service' => 'data','coded' => $networkcode,'phone' => $phone, 'reseller_price'=>$topay),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: MCDKEY_903sfjfi0ad833mk8537dhc03kbs120r0h9a'
+            'Authorization: '.$token
         ),
     ));
 
@@ -82,21 +98,25 @@ if($product_type=="data"){
 
     curl_close($curl);
 //    echo $response;
-
+//echo $token;
     $data=json_decode($response, true);
     $success=$data["success"];
     $tran=$data["ref"];
+    $tran1=$data["discountAmount"];
 //return;
     if($success==1) {
-        $query = mysqli_query($connection, "insert into bill_payment (product, username, amount, transactionid, paymentmethod,status) values ('$title', '$payer', '$topay', '$tran', 'Wallet Payment', '$success')");
-        echo "<script language='javascript'> window.location='myinvoice.php';</script>";
+        $query = mysqli_query($connection, "insert into bill_payment (product, username, amount, transactionid, paymentmethod,status, discountamount) values ('$title', '$payer', '$topay', '$tran', 'Wallet Payment', '$success', '$tran1')");
+        echo "<script language='javascript'>
+ let message = 'Transaction Successfully';
+                                    alert(message);
+ window.location='myinvoice.php';</script>";
     }
     if($success==0){
         $query=mysqli_query($connection,"update wallet set balance=balance+$topay where username='".$_SESSION['username']."'");
         echo "<script language='javascript'>
   let message = '$topay Refunded';
                                     alert(message);
-// window.location='mcderror.php';</script>";
+ window.location='mcderror.php';</script>";
     }
 }
 
@@ -105,7 +125,7 @@ elseif ($product_type=="airtime") {
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://test.mcd.5starcompany.com.ng/api/reseller/pay',
+        CURLOPT_URL => $resellerURL.'pay',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -115,10 +135,10 @@ elseif ($product_type=="airtime") {
         CURLOPT_SSL_VERIFYHOST => 0,
         CURLOPT_SSL_VERIFYPEER => 0,
         CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => array('service' => 'airtime','coded' => $networkcode,'phone' => $phone,'amount' => $topay),
+        CURLOPT_POSTFIELDS => array('service' => 'airtime','coded' => $networkcode,'phone' => $phone,'amount' => $topay, 'reseller_price'=>$topay),
 
         CURLOPT_HTTPHEADER => array(
-            'Authorization: MCDKEY_903sfjfi0ad833mk8537dhc03kbs120r0h9a'
+            'Authorization: '.$token
         )));
 
     $response = curl_exec($curl);
@@ -129,23 +149,27 @@ elseif ($product_type=="airtime") {
     $data=json_decode($response, true);
     $success=$data["success"];
     $tran=$data["ref"];
+    $tran1=$data["discountAmount"];
     if($success==1) {
-        $query = mysqli_query($connection, "insert into bill_payment (product, username, amount, transactionid, paymentmethod,status) values ('$title', '$payer', '$topay', '$tran', 'Wallet Payment', '$success')");
-        echo "<script language='javascript'> window.location='myinvoice.php';</script>";
+        $query = mysqli_query($connection, "insert into bill_payment (product, username, amount, transactionid, paymentmethod,status, discountamount) values ('$title', '$payer', '$topay', '$tran', 'Wallet Payment', '$success', '$tran1')");
+        echo "<script language='javascript'>
+ let message = 'Transaction Successfully';
+                                    alert(message);
+ window.location='myinvoice.php';</script>";
     }
     if($success==0){
         $query=mysqli_query($connection,"update wallet set balance=balance+$topay where username='".$_SESSION['username']."'");
         echo "<script language='javascript'>
   let message = '$topay Refunded';
                                     alert(message);
-// window.location='mcderror.php';</script>";
+ window.location='mcderror.php';</script>";
     }
 }
 elseif ($product_type=="tv") {
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://test.mcd.5starcompany.com.ng/api/reseller/pay',
+        CURLOPT_URL => $resellerURL.'pay',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -155,9 +179,9 @@ elseif ($product_type=="tv") {
         CURLOPT_SSL_VERIFYHOST => 0,
         CURLOPT_SSL_VERIFYPEER => 0,
         CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => array('service' => 'tv','coded' => $networkcode,'phone' => $phone),
+        CURLOPT_POSTFIELDS => array('service' => 'tv','coded' => $networkcode,'phone' => $phone, 'reseller_price'=>$topay),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: MCDKEY_903sfjfi0ad833mk8537dhc03kbs120r0h9a'
+            'Authorization: '.$token
         ),
     ));
 
@@ -169,8 +193,10 @@ elseif ($product_type=="tv") {
     $success=$data["success"];
     $m=$data["message"];
     $net=$data["ref"];
+    $tran1=$data["discountAmount"];
+
     if($success==1) {
-        $query = mysqli_query($connection, "insert into bill_payment (product, username, amount, transactionid, paymentmethod,status) values ('$title', '$payer', '$topay', '$net', 'Wallet Payment', '$success')");
+        $query = mysqli_query($connection, "insert into bill_payment (product, username, amount, transactionid, paymentmethod,status, discountamount) values ('$title', '$payer', '$topay', '$net', 'Wallet Payment', '$success', '$tran1')");
         echo "<script language='javascript'> 
 let message = '$m';
                                     alert(message);
@@ -188,7 +214,7 @@ elseif ($product_type=="nepa") {
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://test.mcd.5starcompany.com.ng/api/reseller/pay',
+        CURLOPT_URL => $resellerURL.'pay',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -198,9 +224,9 @@ elseif ($product_type=="nepa") {
         CURLOPT_SSL_VERIFYHOST => 0,
         CURLOPT_SSL_VERIFYPEER => 0,
         CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => array('service' => 'electricity','coded' => $networkcode,'phone' => $phone, 'amount' => $topay),
+        CURLOPT_POSTFIELDS => array('service' => 'electricity','coded' => $networkcode,'phone' => $phone, 'amount' => $topay, 'reseller_price'=>$topay),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: MCDKEY_903sfjfi0ad833mk8537dhc03kbs120r0h9a'
+            'Authorization: '.$token
         ),
     ));
 
@@ -212,8 +238,10 @@ elseif ($product_type=="nepa") {
     $success=$data["success"];
     $m=$data["message"];
     $net=$data["ref"];
+    $tran1=$data["discountAmount"];
+    $tran2=$data["token"];
     if($success==1) {
-        $query = mysqli_query($connection, "insert into bill_payment (product, username, amount, transactionid, paymentmethod,status) values ('$title', '$payer', '$topay', '$net', 'Wallet Payment', '$success')");
+        $query = mysqli_query($connection, "insert into bill_payment (product, username, amount, transactionid, paymentmethod,status, discountamount, token) values ('$title', '$payer', '$topay', '$net', 'Wallet Payment', '$success', '$tran1', '$tran2')");
         echo "<script language='javascript'> 
 let message = '$m';
                                     alert(message);
@@ -253,4 +281,13 @@ window.location='myinvoice.php';</script>";
 //
 //}//end buying data
 
+?>
+<?php
+
+} else{
+    print "<script language='javascript'>window.location = '../index.php';</script>";
+
+
+}
+}
 ?>

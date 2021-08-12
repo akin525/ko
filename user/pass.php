@@ -1,140 +1,188 @@
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>User Dashboard</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="vendors/base/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- endinject -->
-    <link rel="shortcut icon" href="images/logo.png" />
-</head>
-<?php
-include_once ("include/database.php");
-
-if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['todo']))
-{
-// Collect the data from post method of form submission //
-    $email=mysqli_real_escape_string($connection,$_POST['email']);
-
-    $query = "select * from users where email='$email'";
-    $result = mysqli_query($connection,$query);
-    $count = mysqli_num_rows($result);
-
-    // If result matched $myusername and $mypassword, table row must be 1 row
-
-    if($count == 1) {
-
-        $password=uniqid('m', true);
-
-        $query=mysqli_query($connection,"update users set password='".md5($password)."'  where email='".$email."'");
-
-        // More headers
-//        $headers = "MIME-Version: 1.0" . "\r\n";
-//        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-//        $headers .= 'From: <no-reply@'.$wlink.'>' . "\r\n";
-//        $to=$email;
-//        $subject="Password Reset on ".$wname;
-//        $message = "Hello! <br /><p>Your Password has been reset with the details below. <br /> <br /> Password: $password. </p>Thanks for trying us out. <br /> https://".$wlink;
-//
-//        mail($email,$subject,$message,$headers);
-
-        $query="SELECT * FROM users where email = '".$_SESSION['login_user']."'";
-        $result = mysqli_query($connection,$query);
-        while($row = mysqli_fetch_array($result)) {
-
-
-            $n = $row['name'];
-            $email = $row['email'];
-            $password = $row['password'];
-
-        }
-        $mail= "info@efemobilemoney.com";
-        $to = $email;
-        $from = $mail;
-        $name = $n;
-//$subject = $_REQUEST['subject'];
-//$number = $_REQUEST['phone_no'];
-//$cmessage = $_REQUEST['message'];
-
-        $headers = "From: $from";
-        $headers = "From: " . $from . "\r\n";
-        $headers .= "Reply-To: ". $from . "\r\n";
-        $headers .= "MIME-Version: 1.0\r\n";
-        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
-        $subject = "From EFE MOBILE MONEY.";
-
-        $logo = '<img src=public/images/logo/logo.png alt=logo>';
-        $link = '#';
-
-        $body = "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Express Mail</title></head><body>";
-        $body .= "<table style='width: 100%;'>";
-        $body .= "<thead style='text-align: center;'><tr><td style='border:none;' colspan='2'>";
-        $body .= "<a href='{$link}'><img src='{$logo}' alt=''></a><br><br>";
-        $body .= "<p style='border:none;'><strong>Thanks For Signing Up, This Are Your Details Below<strong>";
-        $body .= "<p style='border:none;'><strong>Your Password has been reset with the details below.</strong>Password: {$password} </p>";
-        $body .= "<p style='border:none;'><strong>Kindly Update Your Password after Log-in Your Profile</strong></p>";
-//$body .= "<p style='border:none;'><strong>Password:</strong> {$password}</p>";
-//$body .= "<p style='border:none;'><strong>Wallet Balance:</strong>#0.00</p>";
-        $body .= "</tr>";
-// 	$body .= "<tr><td style='border:none;'><strong>Subject:</strong> {$csubject}</td></tr>";
-        $body .= "<tr><td></td></tr>";
-//$body .= "<tr><td colspan='2' style='border:none;'>{$cmessage}</td></tr>";
-        $body .= "</tbody></table>";
-        $body .= "</body></html>";
-
-        $send = mail($to, $subject, $body, $headers);
-
-        $msg= "<div class='alert alert-success'>
-                    <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                    <i class='fa fa-ban-circle'></i><strong>Pass       word Reset Successful : </br></strong>A mail has been sent to $email containing your login details.</div>";
-
-    }else{
-        $msg= "<div class='alert alert-danger'>
-                    <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                    <i class='fa fa-ban-circle'></i><strong>Please Fix Below Errors : </br></strong>Email not found in our system</div>"; //printing error if found in validation
-    }
-
-}
-
+<?php include "menubar.php";
 
 ?>
+<div class="page-wrapper">
+    <div class="row page-breadcrumbs">
+        <div class="col-md-12 align-self-center">
+            <h4 class="theme-cl">Update Password</h4>
+        </div>
+    </div>
+    <!-- Title & Breadcrumbs-->
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="row">
+                    <!-- col-md-6 -->
+                    <div class="col-md-12 col-12">
 
-<body>
-<div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="content-wrapper d-flex align-items-center auth px-0">
-            <div class="row w-100 mx-0">
-                <div class="col-lg-4 mx-auto">
-                    <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                        <center>
-                        <div class="brand-logo">
-                            <img src="images/logo.png" alt="logo">
+                        <div class="form-group">
+                            <div class="contact-thumb">
+                                <h1><i class="ti i-cl-4 ti-lock"></i></h1>
+                            </div>
                         </div>
-                        <h4>Forget Password</h4>
-                        </center>
-                        <?php
-                        if($_SERVER['REQUEST_METHOD'] == 'POST')
-                        {
-                            print $msg;
-                        }
-                        ?>
-                        <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"], ENT_QUOTES, "utf-8"); ?>" method="post">
-                            <div class="form-group">
-                                <input type="email" name="email" class="form-control form-control-lg" id="exampleInputEmail" placeholder="email" required/>
-                                <input type="hidden" name="todo" value="post">
 
+
+
+
+                        <div class="col-md-12">
+                            <?php
+                            $status = "OK";
+                            $msg=$password ="";
+
+                            if($_SERVER['REQUEST_METHOD'] == 'POST' )
+                            {
+
+
+// Collect the data from post method of form submission //
+                                $cpass=mysqli_real_escape_string($connection,$_POST['cpass']);
+//                                    $cpass = md5($cpass);
+                                $ccpass=mysqli_real_escape_string($connection,$_POST['ccpass']);
+
+                                $password=mysqli_real_escape_string($connection,$_POST['password']);
+//                                    $password = md5($password);
+
+                                $confirm_password=mysqli_real_escape_string($connection,$_POST['confirm_password']);
+//                                    $confirm_password =('confirm_password');
+//collection ends
+
+                                if($password!=""){
+
+                                    if ( $ccpass!==$cpass){
+                                        $msg=$msg."Current Password Is Wrong.<BR>";
+                                        $status= "NOTOK";}
+
+                                    if ( $password <> $confirm_password ){
+                                        $msg=$msg."New Password And Confirm Password Are Not Matching.<BR>";
+                                        $status= "NOTOK";}
+
+                                    if ( strlen($password) < 8 ){
+                                        $msg=$msg."Password Must Be More Than 8 Char Length.<BR>";
+                                        $status= "NOTOK";}
+
+//validation starts
+// if userid is less than 6 char then status is not ok
+                                }
+
+                                if ($status=="OK")
+                                {
+                                    $query=mysqli_query($connection,"update users set password='$password'  where username='".$_SESSION['username']."'");
+
+                                    $errormsg= "<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-ban-circle'></i><strong>Success : </br></strong>Your password has been updated</div>"; //printing error if found in validation
+
+                                }
+                                if ($status=="NOTOK"){
+
+                                    $errormsg= "<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button><i class='fa fa-ban-circle'></i><strong>Please Fix The Errors Below : </br></strong>".$msg."</div>"; //printing error if found in validation
+
+                                }
+
+                            }//end checking password empty
+
+                            $query="SELECT * FROM  users WHERE username='".$_SESSION['username']."'";
+
+
+                            $result = mysqli_query($connection,$query);
+                            $i=0;
+                            while($row = mysqli_fetch_array($result))
+                            {
+
+                                $password="$row[password]";
+                                $email=$row["email"];
+                                $n="$row[name]";
+
+                            }
+
+                            $query="SELECT * FROM  users WHERE username='".$_SESSION['username']."'";
+                            $result = mysqli_query($connection,$query);
+                            $i=0;
+                            while($row = mysqli_fetch_array($result)){
+
+                                $pass="$row[password]";
+                            }
+
+
+                            $mail= "info@lelescoenterprise.com.ng";
+                            $to = $email;
+                            $from = $mail;
+                            $name = $n;
+                            //$subject = $_REQUEST['subject'];
+                            //$number = $_REQUEST['phone_no'];
+                            //$cmessage = $_REQUEST['message'];
+
+                            $headers = "From: $from";
+                            $headers = "From: " . $from . "\r\n";
+                            $headers .= "Reply-To: ". $from . "\r\n";
+                            $headers .= "MIME-Version: 1.0\r\n";
+                            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+                            $subject = "From Lelescoenterprise";
+
+                            $logo = '<img src=images/logo.png alt=logo>';
+                            $link = '#';
+
+                            $body = "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Express Mail</title></head><body>";
+                            $body .= "<table style='width: 100%;'>";
+                            $body .= "<thead style='text-align: center;'><tr><td style='border:none;' colspan='2'>";
+                            $body .= "<a href='{$link}'><img src='{$logo}' alt=''></a><br><br>";
+                            $body .= "<p style='border:none;'><strong>Password Update<strong>";
+                            $body .= "<p style='border:none;'><strong>Your Password has been Change Successful. </strong> New Password: {$password} </p>";
+                            //        $body .= "<p style='border:none;'><strong>Kindly Update Your Password after Log-in Your Profile</strong></p>";
+                            //$body .= "<p style='border:none;'><strong>Password:</strong> {$password}</p>";
+                            //$body .= "<p style='border:none;'><strong>Wallet Balance:</strong>#0.00</p>";
+                            $body .= "</tr>";
+                            // 	$body .= "<tr><td style='border:none;'><strong>Subject:</strong> {$csubject}</td></tr>";
+                            $body .= "<tr><td></td></tr>";
+                            //$body .= "<tr><td colspan='2' style='border:none;'>{$cmessage}</td></tr>";
+                            $body .= "</tbody></table>";
+                            $body .= "</body></html>";
+
+                            $send = mail($to, $subject, $body, $headers);
+                            ?>
+
+                            <form name="frmChange" method="post" action="" onSubmit="return validatePassword()">
+
+                                <div class="row">
+
+
+                                    <div class="col-md-12">
+                                        <?php
+                                        if($_SERVER['REQUEST_METHOD'] == 'POST' && ($status!=""))
+                                        {
+                                            print $errormsg;
+                                        }
+                                        ?>
+                                        <div class="form-group">
+                                            <label>Enter Current Password</label>
+                                            <input type="password" class="form-control" id="email" name="cpass" placeholder="Current Password" required />
+
+                                            <input type="hidden" class="form-control" value="<?php echo $pass; ?>" id="email" name="ccpass" placeholder="Current Password"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label>Enter New Password</label>
+                                            <input type="text" name="password" class="form-control" value="" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label>Confirm New Password</label>
+                                            <input type="text" name="confirm_password" class="form-control" value="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </div>
+
+
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <br>
+                                <button type="submit" class="btn btn-rounded btn-outline-success btn-block">Update Account</button>
+                                </form>
                             </div>
-                            <div class="mt-3">
-                                <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Reset-Password</button>
-                            </div>
-                    <div class="my-2 d-flex justify-content-between align-items-center">
-                    <a href="user/login.php" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Log-in</a>
-                </div>
+                        </div>
+                    </div>

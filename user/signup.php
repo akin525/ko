@@ -1,21 +1,4 @@
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>User Dashboard</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="vendors/base/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png" />
-</head>
-<?php include ("include/database.php");
+<?php include "include/database.php";
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username'])) {
 // Collect the data from post method of form submission //
@@ -127,92 +110,166 @@ window.location = 'dashboard.php';
                     <i class='btn-icon-append'></i><h6 class='alert-danger'>Please Fix Below Errors : </br></h6>".$msg."</div></center>"; //printing error if found in validation
     }
 }
+
+
 ?>
+<!DOCTYPE html>
+<html dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <title>Matrix Template - The Ultimate Multipurpose admin template</title>
+    <!-- Custom CSS -->
+    <link href="dist/css/style.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
 <body>
-<div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="content-wrapper d-flex align-items-center auth px-0">
-            <div class="row w-100 mx-0">
-                <div class="col-lg-4 mx-auto">
-                    <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                        <div class="brand-logo">
-                            <img src="images/logo.png" alt="logo">
+<div class="main-wrapper">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Login box.scss -->
+    <!-- ============================================================== -->
+    <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
+        <div class="auth-box bg-dark border-top border-secondary">
+            <div>
+                <div class="text-center p-t-20 p-b-20">
+                    <span class="db"><img src="assets/images/logo.png" alt="logo" /></span>
+                </div>
+                <!-- Form -->
+
+                <?php
+                if($_SERVER['REQUEST_METHOD'] == 'POST' && ($status=="NOTOK"))
+                {
+                    print $errormsg;
+
+                }
+                ?>
+
+                <?php
+                if($_SERVER['REQUEST_METHOD'] == 'POST' && ($status=="OK"))
+                {
+                    print $suss;
+
+                }
+                ?>
+                </p>
+                <br>
+                </br>
+                <p></p>
+                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"], ENT_QUOTES, "utf-8"); ?>"method="post">
+                    <div class="row p-b-30">
+                        <div class="col-12">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control form-control-lg" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required>
+                                <input type="hidden" name="todo" value="post">
+                            </div>
+                            <!-- email -->
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="ti-email"></i></span>
+                                </div>
+                                <input type="text" name="email" class="form-control form-control-lg" placeholder="Email Address" aria-label="email" aria-describedby="basic-addon1" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="mdi-ticket-account"></i></span>
+                                </div>
+                                <input type="text" name="name" class="form-control form-control-lg" placeholder="Full Name" aria-label="Full-Name" aria-describedby="basic-addon1" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-control-record"></i></span>
+                                </div>
+                                <input type="number" name="phone" class="form-control form-control-lg" placeholder="Phone number" aria-label="Phone" aria-describedby="basic-addon1" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-info text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
+                                </div>
+                                <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required>
+                            </div>
                         </div>
-                        <h4>New here?</h4>
-                        <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
-                       <p class="alert-danger"><?php
-                        if($_SERVER['REQUEST_METHOD'] == 'POST' && ($status=="NOTOK"))
-                        {
-                            print $errormsg;
-
-                        }
-                        ?>
-
-                        <?php
-                        if($_SERVER['REQUEST_METHOD'] == 'POST' && ($status=="OK"))
-                        {
-                            print $suss;
-
-                        }
-                        ?>
-                       </p>
-                    <br>
-                    </br>
-                        <p></p>
-                        <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"], ENT_QUOTES, "utf-8"); ?>"method="post">
-                        <div class="form-group">
-                                <input type="text" name="username" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username" required/>
-                            </div>
+                    </div>
+                    <div class="row border-top border-secondary">
+                        <div class="col-12">
                             <div class="form-group">
-                                <input type="text" name="name" class="form-control form-control-lg" id="exampleInputFullName" placeholder="FullName" required/>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" name="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" required/>
-                            </div>
-                            <div class="form-group">
-                                <input type="tel" name="phone" class="form-control form-control-lg" id="090000000" placeholder="number" required/>
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" required/>
-                            </div>
-                            <div class="mb-4">
-                                <div class="form-check">
-                                    <label class="form-check-label text-muted">
-                                        <input type="checkbox" class="form-check-input">
-                                        I agree to all Terms & Conditions
-                                    </label>
+                                <div class="p-t-20">
+                                    <button class="btn btn-block btn-lg btn-info" type="submit">Sign Up</button>
                                 </div>
                             </div>
-                            <div class="mt-3">
-                                <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
-                            </div>
-                            <div class="text-center mt-4 font-weight-light">
-                                Already have an account? <a href="user/login.php" class="text-primary">Login</a>
-                            </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
+                    <div class="row border-top border-secondary">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <div class="p-t-20">
+                                    <button class="btn btn-info" id="to-recover" type="button"><i class="fa fa-lock m-r-5"></i><a class="text-white" href="../index.php"> Homepage</a></button>
+                                    <button  class="btn btn-success float-right" type="button"><a href="login.php">Login</a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-        <!-- content-wrapper ends -->
     </div>
-    <!-- page-body-wrapper ends -->
+    <!-- ============================================================== -->
+    <!-- Login box.scss -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper scss in scafholding.scss -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper scss in scafholding.scss -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right Sidebar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right Sidebar -->
+    <!-- ============================================================== -->
 </div>
+<!-- ============================================================== -->
+<!-- All Required js -->
+<!-- ============================================================== -->
+<script src="assets/libs/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
+<script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- ============================================================== -->
+<!-- This page plugin js -->
+<!-- ============================================================== -->
+<script>
+    $('[data-toggle="tooltip"]').tooltip();
+    $(".preloader").fadeOut();
+</script>
+</body>
 
-
-
-<!-- plugins:js -->
-<script src="vendors/base/vendor.bundle.base.js"></script>
-<!-- endinject -->
-<!-- Plugin js for this page-->
-<script src="vendors/chart.js/Chart.min.js"></script>
-<!-- End plugin js for this page-->
-<!-- inject:js -->
-<script src="js/off-canvas.js"></script>
-<script src="js/hoverable-collapse.js"></script>
-<script src="js/template.js"></script>
-<script src="js/todolist.js"></script>
-<!-- endinject -->
-<!-- Custom js for this page-->
-<script src="js/dashboard.js"></script>
-<!-- End custom js for this page-->
+</html>

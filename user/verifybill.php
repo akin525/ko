@@ -18,12 +18,14 @@ $number= mysqli_real_escape_string($connection,$_GET["number"]);
 $networkcode= mysqli_real_escape_string($connection,$_GET["networkcode"]);
 $provider=substr(mysqli_real_escape_string($connection,$_GET["provider"]), 0,1);
 
+$resellerURL='https://superadmin.mcd.5starcompany.com.ng/api/reseller/';
+
 //echo $networkcode . " ". $number;
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
 
-    CURLOPT_URL => 'https://test.mcd.5starcompany.com.ng/api/reseller/validate',
+    CURLOPT_URL => $resellerURL.'validate',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,

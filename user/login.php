@@ -1,24 +1,4 @@
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>User Dashboard</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="vendors/base/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- endinject -->
-    <link rel="shortcut icon" href="images/logo.png" />
-</head>
-
-
-<?php
-include_once ("include/database.php");
-
+<?php include "include/database.php";
 $sql="SELECT maintain FROM  settings WHERE sno=0";
 if ($result = mysqli_query($connection, $sql)) {
 
@@ -26,9 +6,9 @@ if ($result = mysqli_query($connection, $sql)) {
     while ($row = mysqli_fetch_row($result)) {
         $main= $row[0];
     }
-    if($main==2 || $main==3)
+    if($main==1 || $main==3)
     {
-        print "<script language='javascript'>window.location = '404.php';</script>";
+        print "<script language='javascript'>window.location = '../index.php';</script>";
     }
 
 }
@@ -77,74 +57,138 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['todo']))
 }
 
 ?>
+<!DOCTYPE html>
+<html dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <title>Matrix Template - The Ultimate Multipurpose admin template</title>
+    <!-- Custom CSS -->
+    <link href="dist/css/style.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
 <body>
-<div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="content-wrapper d-flex align-items-center auth px-0">
-            <div class="row w-100 mx-0">
-                <div class="col-lg-4 mx-auto">
-                    <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                        <div class="brand-logo">
-                            <img src="images/logo.png" alt="logo">
-                        </div>
-                        <h4>Hello! let's get started</h4>
-                        <h6 class="font-weight-light">Sign in to continue.</h6>
-                        <center><?php
-                            if(!empty($errormsg))
-                            {
-                                print $errormsg;
-
-                            }
-                            ?>
-                        </center>
-                        <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"], ENT_QUOTES, "utf-8"); ?>" method="post">
-                        <div class="form-group">
-                                <input type="text" name="username" class="form-control form-control-lg" id="exampleInputUsername" placeholder="Username" required/>
-                            <input type="hidden" name="todo" value="post">
-
-                        </div>
-                            <div class="form-group">
-                                <input type="password" name="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" required/>
-                            </div>
-                            <div class="mt-3">
-                                <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
-                            </div>
-                            <div class="my-2 d-flex justify-content-between align-items-center">
-                                <div class="form-check">
-                                    <label class="form-check-label text-muted">
-                                        <input type="checkbox" class="form-check-input">
-                                        Keep me signed in
-                                    </label>
-                                </div>
-                                <a href="pass.php" class="auth-link text-black">Forgot password?</a>
-                            </div>
-                            <div class="text-center mt-4 font-weight-light">
-                                Don't have an account? <a href="usersignup.php" class="text-primary">Create</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+<div class="main-wrapper">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
         </div>
-        <!-- content-wrapper ends -->
     </div>
-    <!-- page-body-wrapper ends -->
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Login box.scss -->
+    <!-- ============================================================== -->
+
+    <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
+        <div class="auth-box bg-dark border-top border-secondary">
+            <center><button class="btn-outline-success align-content-center text-center"><a class="text-white" href="../index.php"> Back To Homepage </a></button></center>
+            <div id="loginform">
+                <div class="text-center p-t-20 p-b-20">
+                    <span class="db"><img src="assets/images/logo.png" alt="logo" /></span>
+                </div>
+                <!-- Form -->
+                <center><?php
+                    if(!empty($errormsg))
+                    {
+                        print $errormsg;
+
+                    }
+                    ?>
+                </center>
+                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"], ENT_QUOTES, "utf-8"); ?>" method="post">
+                    <div class="row p-b-30">
+                        <div class="col-12">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                                </div>
+                                <input type="text" name="username" class="form-control form-control-lg" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required="">
+                                <input type="hidden" name="todo" value="post">
+
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
+                                </div>
+                                <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row border-top border-secondary">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <div class="p-t-20">
+                                    <button class="btn btn-info" type="button"><i class="fa fa-lock m-r-5"></i> <a class="text-white" href="lost.php"> Lost password?</a></button>
+                                    <button class="btn btn-success float-right" type="submit">Login</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>>
+    <!-- ============================================================== -->
+    <!-- Login box.scss -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper scss in scafholding.scss -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper scss in scafholding.scss -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right Sidebar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right Sidebar -->
+    <!-- ============================================================== -->
 </div>
+<!-- ============================================================== -->
+<!-- All Required js -->
+<!-- ============================================================== -->
+<script src="assets/libs/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
+<script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- ============================================================== -->
+<!-- This page plugin js -->
+<!-- ============================================================== -->
+<script>
 
+    $('[data-toggle="tooltip"]').tooltip();
+    $(".preloader").fadeOut();
+    // ==============================================================
+    // Login and Recover Password
+    // ==============================================================
+    $('#to-recover').on("click", function() {
+        $("#loginform").slideUp();
+        $("#recoverform").fadeIn();
+    });
+    $('#to-login').click(function(){
 
+        $("#recoverform").hide();
+        $("#loginform").fadeIn();
+    });
+</script>
 
-<!-- plugins:js -->
-<script src="vendors/base/vendor.bundle.base.js"></script>
-<!-- endinject -->
-<!-- Plugin js for this page-->
-<script src="vendors/chart.js/Chart.min.js"></script>
-<!-- End plugin js for this page-->
-<!-- inject:js -->
-<script src="js/off-canvas.js"></script>
-<script src="js/hoverable-collapse.js"></script>
-<script src="js/template.js"></script>
-<script src="js/todolist.js"></script>
-<!-- endinject -->
-<!-- Custom js for this page-->
-<script src="js/dashboard.js"></script>
-<!-- End custom js for this page-->
+</body>
+
+</html>

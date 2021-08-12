@@ -1,3 +1,15 @@
+
+<!--<script>-->
+<!--    if (window.location.protocol == "http:") {-->
+<!--        console.log("You are not connected with a secure connection.")-->
+<!--        console.log("Reloading the page to a Secure Connection...")-->
+<!--        window.location = document.URL.replace("http://", "https://");-->
+<!--    }-->
+<!---->
+<!--    if (window.location.protocol == "https:") {-->
+<!--        console.log("You are connected with a secure connection.")-->
+<!--    }-->
+<!--</script>-->
 <?php include"user/include/database.php"; ?>
 <?php
 
@@ -79,7 +91,7 @@
     <meta name="csrf-token" content="vm0Wp5ijbtKadpTCaYII5JlAAg2GWLY116LBEB6T">
 
     <title>Frequently Asked Questions
-        | Mighty Data</title>
+        lelescoenterprise</title>
 
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900%7COpen+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
@@ -114,9 +126,27 @@
                 <li><a href="#services">Our Services</a></li>
                 <li><a href="#faq">FAQS</a></li>
                 <li><a href="#contact">Contact Us</a></li>
+                                    <?php if( isset($_SESSION['username']) ){
+                                        $query = "SELECT * FROM  users WHERE username='" . $_SESSION['username'] . "'";
+                                        $result = mysqli_query($connection, $query);
+
+                                        while ($row = mysqli_fetch_array($result)) {
+                                            $username = "$row[username]";
+                                            $name = $row["name"];
+                                            $date = $row["date"];
+                                            $email = $row["email"];
+                                            $phone = $row["phone"];
+
+                                        }
+                                        ?>
+                                            <li><a href="user/dashboard.php"><i class="m-md-1 md1-account"></i><?php echo $name; ?></a> </li>
+                                            <li><a href="user/dashboard.php">Dashboard</a> </li>
+                                            <li><a href="user/logout.php">Log-Out</a> </li>
+
+                                        <?php } else{ ?>
                 <li><a href="user/buydata.php">Login</a></li>
                 <li><a href="user/signup.php">Register</a></li>
-
+<?php } ?>
             </ul>
         </nav><!-- .nav-menu -->
 
@@ -130,9 +160,18 @@
         <br>
         <br>
         <h1>Welcome to Lelescoenterprise</h1>
+
         <h2>A technology platform that offers solutions to digital needs at best possible price without compromising quality.</h2><br>
-        <a href="user/login.php" class="btn scrollto"  style="background-color: #c56d14;color: white;">Sign In&nbsp;<i></i></a> &nbsp;&nbsp; <a href="user/signup.php" class="btn scrollto" style="background-color: #c6731a;color: white;">Get Started&nbsp;<i></i></a>
-    </div>
+                                    <?php if( isset($_SESSION['username'])){ ?>
+                                        <!-- show HTML logout button -->
+
+        <a href="user/dashboard.php" class="btn scrollto"  style="background-color: #c56d14;color: white;">My Account&nbsp;<i></i></a> &nbsp;&nbsp; <a href="user/tv.php" class="btn scrollto" style="background-color: #c6731a;color: white;">Cable Subscription<i></i></a>
+
+                                        <?php }else{ ?>
+                                        <a href="user/login.php" class="btn scrollto"  style="background-color: #c56d14;color: white;">Login&nbsp;<i></i></a> &nbsp;&nbsp; <a href="user/signup.php" class="btn scrollto" style="background-color: #c6731a;color: white;">Get Started&nbsp;<i></i></a>
+
+                                        <?php } ?>
+                                        </div>
 </section><!-- End Hero -->
 
 <main id="main">
@@ -233,7 +272,7 @@
                 <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
                     <div class="icon-box iconbox-bue">
                         <img src="homepage/vendor/img/s.jpg" class="img-fluid" style="width: 100%; height: 50%;">
-                        <h4><a href="fundwallet.php">SECURE PAYMENT</a></h4>
+                        <h4><a href="user/fund.php">SECURE PAYMENT</a></h4>
                         <p>Your payment is secure and your details will never be at risk.</p>
                         <a href="user/buydata.php" style="width: 95%; margin-bottom: -40px; background: linear-gradient(to right, #c56d14, #c6731a, #c56d14 );" class="mt-3 py-2 btn text-white">Order Now</a>
                     </div>
@@ -252,7 +291,7 @@
                         <img src="homepage/vendor/img/airtime.png" class="img-fluid" style="width: 100%; height: 50%;">
                         <h4><a href="user/buydata.php">Airtime TopUp</a></h4>
                         <p>Making an online recharge has become very easy and safe on <span style="text-transform: lowercase;">Tushytech</span>.com</p>
-                        <a href="user/buydata.phpl" style="width: 95%; margin-bottom: -40px; background: linear-gradient(to right, #c6731a, #c56d14, #c6731a );" class="mt-3 py-2 btn text-white">Order Now</a>
+                        <a href="user/buydata.php" style="width: 95%; margin-bottom: -40px; background: linear-gradient(to right, #c6731a, #c56d14, #c6731a );" class="mt-3 py-2 btn text-white">Order Now</a>
                     </div>
                 </div>
 
@@ -853,8 +892,13 @@
                         <li><i class="bx bx-chevron-right" style="color:#c56d14"></i> <a href="#">Home</a></li>
                         <li><i class="bx bx-chevron-right" style="color:#c56d14"></i> <a href="#about">About us</a></li>
                         <li><i class="bx bx-chevron-right" style="color:#c56d14"></i> <a href="#services">Our Services</a></li>
+                       <?php if( isset($_SESSION['username']) ){ ?>
+                        <li><i class="bx bx-chevron-right" style="color:#c56d14"></i> <a href="user/dashboard.php">Dashboard</a></li>
+                        <li><i class="bx bx-chevron-right" style="color:#c56d14"></i> <a href="user/logout.php">Logo-Out</a></li>
+                        <?php } else{?>
                         <li><i class="bx bx-chevron-right" style="color:#c56d14"></i> <a href="user/signup.php">Register</a></li>
                         <li><i class="bx bx-chevron-right" style="color:#c56d14"></i> <a href="user/login.php">Login</a></li>
+                        <?php } ?>
                         <!--              <li><i class="bx bx-chevron-right" style="color:#206fa5"></i> <a href="0/login.html">API Integration</a></li>-->
                     </ul>
                 </div>
@@ -978,8 +1022,8 @@
 <header id="header" class="d-flex align-items-center">
     <div class="container d-flex flex-column align-items-center">
 
-        <h1>UNDERCONSTRUCTION</h1>
-        <h2>We're working hard to improve our website and we'll ready to launch after</h2>
+        <h4>UNDERCONSTRUCTION</h4>
+        <h6>We're working hard to improve our website and we'll ready to launch after</h6>
         <div class="countdown d-flex justify-content-center" data-count="2021/09/5">
             <div>
                 <h3>%d</h3>

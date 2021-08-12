@@ -37,7 +37,7 @@ curl_close($curl);
 if ($err) {
     echo "cURL Error #:" . $err;
 } else {
-    echo $response;
+//    echo $response;
 }
 $data=json_decode($response, true);
 $amount=$data["data"]["amount"]/100;
@@ -91,9 +91,9 @@ $headers .= "Reply-To: ". $from . "\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
-$subject = "From EFE MOBILE MONEY.";
+$subject = "From Lelescoenterprise.";
 
-$logo = '<img src="public/images/logo/logo.png" alt="logo">';
+$logo = '<img src="images/logo.png" alt="logo">';
 $link = '#';
 
 $body = "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Express Mail</title></head><body>";
